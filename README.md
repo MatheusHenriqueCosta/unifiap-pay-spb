@@ -33,10 +33,14 @@ O desafio foca em três pilares:
 ### 1.3. Diagrama de Arquitetura
 Incluir aqui o diagrama de arquitetura.  
 O diagrama deve mostrar:
-- Os Pods dos serviços  
-- O Volume Compartilhado (PVC), atuando como Livro-Razão  
-- ConfigMap e Secrets  
+- Os Pods dos serviços
+  <img width="1536" height="1024" alt="services" src="https://github.com/user-attachments/assets/da38336e-13d9-4eb0-8262-3fb2555e3c24" />
+- O Volume Compartilhado (PVC), atuando como Livro-Razão
+ <img width="1536" height="1024" alt="pvc" src="https://github.com/user-attachments/assets/234c2f85-29ac-46cc-acb1-99f8eb896f22" />
+- ConfigMap e Secrets
+  <img width="1536" height="1024" alt="configmap" src="https://github.com/user-attachments/assets/618ee716-d992-4d53-a3a1-dbbd7d8b6e23" />
 - Rede Docker customizada (subnet isolada)
+ <img width="1536" height="1024" alt="network" src="https://github.com/user-attachments/assets/186a33bc-5b7a-4d0e-9ac8-e96bbe3ec05e" />
 
 ---
 
