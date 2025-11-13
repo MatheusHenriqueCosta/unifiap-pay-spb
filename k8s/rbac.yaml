@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: api-sa
+  namespace: unifiapay
+automountServiceAccountToken: false
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: auditoria-sa
+  namespace: unifiapay
+
+---
+# Auditoria role: permite ações limitadas no namespace (ex.: listar pods e jobs) — princípio do menor privilégio
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: auditoria-role
+  namespace: unifiapay
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "jobs"]
+    verbs: ["get", "list"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: auditoria-rb
+  namespace: unifiapay
+subjects:
+  - kind: ServiceAccount
+    name: auditoria-sa
+    namespace: unifiapay
+roleRef:
+  kind: Role
+  name: auditoria-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# API minimal role (ex.: permitir leitura de ConfigMap somente se necessário)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: api-role
+  namespace: unifiapay
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: api-rb
+  namespace: unifiapay
+subjects:
+  - kind: ServiceAccount
+    name: api-sa
+    namespace: unifiapay
+roleRef:
+  kind: Role
+  name: api-role
+  apiGroup: rbac.authorization.k8s.io

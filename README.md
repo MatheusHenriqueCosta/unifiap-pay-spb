@@ -1,8 +1,8 @@
 # Desafio UniFIAP Pay SPB
 
 ## Dados do Aluno
-- Nome: [Seu Nome Completo]  
-- RM: [Seu Registro de Matrícula]  
+- Nome: Matheus Henrique Costa Gonçalves 
+- RM: 96957  
 - Total de Pontos Deste Desafio: 9,0 pts  
 
 ---
@@ -68,23 +68,61 @@ O diagrama deve mostrar:
 
 ## 3. Evidências e Resultados
 3.1. Etapa 1: Docker e Imagem Segura (1,5 pts)
-- Print do comando docker build mostrando multi-stage.
+-- Print do comando docker build mostrando multi-stage.
+![alt text](images/image.png)
+![alt text](images/image-1.png)
+![alt text](images/image-2.png)
+
+
 - Saída do docker push com a tag v1.<RM_do_aluno>.
+
+![alt text](images/image-3.png)
+
 - Saída do docker scout comprovando ausência de vulnerabilidades críticas.
+
+![alt text](images/image-4.png)
 
 3.2. Etapa 2: Rede, Comunicação e Segmentação (2,5 pts)
 - Saída de docker inspect unifiap_net mostrando o bloco IP customizado.
+
+![alt text](images/image-5.png)
+
+
 - Saída de curl ou ping entre containers.
+![alt text](images/image-6.png)
+
+![alt text](images/image-7.png)
+
 - Logs da API lendo RESERVA_BANCARIA_SALDO do arquivo .env.
+
+![alt text](images/image-8.png)
+![alt text](images/image-9.png)
+![alt text](images/image-10.png)
+![alt text](images/image-11.png)
+![alt text](images/image-12.png)
   
 3.3. Etapa 3: Kubernetes – Estrutura, Escala e Deploy (3,0 pts)
 - Saída de kubectl get pods -n unifiapay mostrando a API com 2 réplicas e o Auditoria rodando.
+![alt text](images/image-13.png)
+
 - Saída do kubectl scale e subsequente kubectl get pods mostrando o aumento de réplicas.
+![alt text](images/image-14.png)
+
 - Logs de dois Pods da API e do Pod da Auditoria, provando leitura/escrita no mesmo arquivo instrucoes.log.
+![alt text](images/image-15.png)
+
 - Saída de kubectl get cronjob e kubectl get job após a execução do cronjob-fechamento-reserva.
+![alt text](images/image-16.png)
 
 3.4. Etapa 4: Kubernetes – Segurança, Observação e Operação (2,0 pts)
 - Saída do comando kubectl top pods -n unifiapay mostrando limites de CPU/Memória aplicados.
+![alt text](images/image-17.png)
+
 - Trecho do manifest YAML mostrando a configuração do securityContext (runAsNonRoot: true, etc.).
+![alt text](images/image-18.png)
+![alt text](images/image-19.png)
+
 - Comando de tentativa de deploy insegura seguido do kubectl describe pod, provando bloqueio por regra de segurança.
+![alt text](images/image-20.png)
+
 - Saída do kubectl auth can-i ... provando que a ServiceAccount tem permissão restrita.
